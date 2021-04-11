@@ -1,0 +1,36 @@
+{
+    "name": "byteferry/rql-parser",
+    "type": "library",
+    "description": "A PHP parser for parsing the resource query language(RQL) to php data structure",
+    "keywords": ["resource query language","rql","api","parser"],
+    "homepage": "http://byteferry.github.io/rql-parser/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bardeen QI",
+            "email": "67158925@qq.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3.3",
+        "orchestra/testbench": "^6.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "ByteFerry\\RqlParser\\": "src/",
+            "ByteFerry\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "tests/phpunit.sh"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "process-timeout": 300
+    }
+}
