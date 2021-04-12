@@ -32,6 +32,32 @@ class QueryNode extends AstNode implements NodeInterface
     }
 
     /**
+     * @param $array
+     *
+     * @return void
+     */
+    protected function addStage($array){
+        foreach($array as $key => $item){
+            $this->stage[$key] = $item;
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function buildChildren(){
+        /** @var NodeInterface $child */
+        foreach($this->argument as $child){
+            $result = $child->build();
+            if(!is_array($result)){
+                $this->stage['resource'] = $result;
+            }else{
+                $this->addStage($result);
+            }
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function build(){

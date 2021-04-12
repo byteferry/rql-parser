@@ -95,7 +95,9 @@ abstract class AstNode
         $token = $ListLexer->consume();
 
         for(; (false !== $token); $token = $ListLexer->consume()){
-
+            if($ListLexer->isClose()){
+                return $ListLexer->getNextIndex();
+            }
             /** @var NodeInterface $node */
             $node = NodeVisitor::visit($token->getSymbol());
             $node->load($ListLexer);
@@ -122,6 +124,13 @@ abstract class AstNode
         for($i=0,$j=count($this->stage);$i<$j;$i+=2) {
             yield [$this->stage[$i], $this->stage[$i + 1]];
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperator(){
+        return $this->operator;
     }
 
     /**

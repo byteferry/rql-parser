@@ -20,46 +20,30 @@ use ByteFerry\RqlParser\Parser;
  */
 final class SimpleQueryTest extends TestCase
 {
-//    /** @test */
-//    public function TestAnyQuery(){
-//        $rql_str= "any(User,only(id,name,age,gender,address),filter( and(  eq(age,19),  between(id, 100, 200)  )  ) )"; //,    //,
-//        $result = Parser::parse($rql_str);
-//        dd($result);
-//    }
-
-//    /** @test */
-//    public function TestOneQuery(){
-//        $rql_str= "one(User,only(id,name,age,gender,address),filter( and(  gt(age,19),  in(id, (100, 200))  )  ) )"; //,    //,
-//        $result = Parser::parse($rql_str);
-//        dd($result);
-//    }
-
-//    /** @test */
-//    public function TestAllQuery(){
-//        $rql_str= 'all(User,only(id,name,age,gender,address),filter(is(created_at, null())), search(Jhon),having(gt(sum(amount),0)))'; //,    //,
-//        $result = Parser::parse($rql_str);
-//        dd($result);
-//    }
-
-//    /** @test */
-//    public function TestFirstQuery(){
-//        $rql_str= 'first(User,only(id,name,age,gender,address),filter(is(created_at, null())), search(Jhon),sort(-id,+age),having(gt(sum(amount),0)),limit(0,20))'; //,    //,
-//        $result = Parser::parse($rql_str);
-//        dd($result);
-//    }
-
-//    /** @test */
-//    public function TestAddQuery(){
-//        $rql_str= 'create(User,data(name:"Jhon Smith",age:26,gender:1,addres:"No 235, Golden Street, MarkTown, New York, USA"))'; //,    //,
-//        $result = Parser::parse($rql_str);
-//        dd($result);
-//    }
+    public $query_keys = [
+        'all' =>['all(user,only(id,age))', '{"resource":"user","columns":["id","age"],"columns_operator":"only","group_by":[],"operator":"all","query_type":"Q_READ"}'],
+        'any' =>['any(user,cols(id,name,age))','{"resource":"user","columns":["id","name","age"],"columns_operator":"cols","group_by":[],"operator":"any","query_type":"Q_READ"}'],
+        'count' =>['count(user,cols(id))','{"resource":"user","columns":["id"],"columns_operator":"cols","group_by":[],"operator":"count","query_type":"Q_READ"}'],
+        'create' =>['create(user,data(name:jhon,age:17))','{"resource":"user","data":{"name":"jhon","age":"17"},"operator":"create","query_type":"Q_WRITE"}'],
+        'decrement' =>['decrement(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"decrement","query_type":"Q_WRITE"}'],
+        'delete' =>['delete(User,filter(eq(id,23)))','{"resource":"User","filter":[" id = 23 "],"paramaters":{"id":"23"},"operator":"delete","query_type":"Q_WRITE"}'],
+        'distinct' =>['distinct(User_score,filter(gt(score,95)))','{"columns":["User_score",{"filter":[" score > 95 "],"paramaters":{"score":"95"}}],"columns_operator":"distinct","group_by":[]}'],
+        'exists' =>['exists(user,filter(eq(mobile,1111)))','{"resource":"user","filter":[" mobile = 1111 "],"paramaters":{"mobile":"1111"},"operator":"exists","query_type":"Q_READ"}'],
+        'first' =>['first(user,filter(gt(age,10)))','{"resource":"user","filter":[" age > 10 "],"paramaters":{"age":"10"},"operator":"first","query_type":"Q_READ"}'],
+        'increment' =>['increment(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"increment","query_type":"Q_WRITE"}'],
+        'minus' =>['minus(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"decrement","query_type":null}'],
+        'one' =>['one(user,filter(eq(id,3)))','{"resource":"user","filter":[" id = 3 "],"paramaters":{"id":"3"},"operator":"one","query_type":"Q_READ"}'],
+        'plus' =>['plus(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"increment","query_type":null}'],
+        'update' =>['update(user,data(age:18),filter(eq(id,3)))','{"resource":"user","data":{"age":"18"},"filter":[" id = 3 "],"paramaters":{"id":"3"},"operator":"update","query_type":"Q_WRITE"}']
+    ];
 
     /** @test */
-    public function TestAggrQuery(){
-        $rql_str= 'all(User,aggr(id,name,age,gender,address,avg(age)),filter(is(created_at, null())), search(Jhon),sort(-id,+age),having(gt(sum(amount),0)),limit(0,20))'; //,    //,
-        $result = Parser::parse($rql_str);
-        dd($result);
+    public function testQuery(){
+        foreach($this->query_keys as $key => $item){
+            [$test_str,$compare] = $item;
+            $result = Parser::parse($test_str);
+            $this->assertEquals($compare,json_encode($result[0]->toArray()));
+        }
     }
 
 }

@@ -19,7 +19,7 @@ use ByteFerry\RqlParser\Abstracts\BaseObject;
  *
  * @package ByteFerry\RqlParser
  */
-final class Fragment extends BaseObject
+class Fragment extends BaseObject implements QueryInterface
 {
 
     /**
@@ -33,11 +33,10 @@ final class Fragment extends BaseObject
      *
      * @return \ByteFerry\RqlParser\Fragment
      */
-    public static function from($query)
+    public function from($query)
     {
-        $instance = new static();
-        $instance->container = $query;
-        return $instance;
+        $this->container = $query;
+        return $this;
     }
 
     /**
@@ -72,5 +71,12 @@ final class Fragment extends BaseObject
     public function __isset($name)
     {
         return isset($this->container[$name]);
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function toArray(){
+        return $this->container;
     }
 }

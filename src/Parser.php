@@ -16,7 +16,7 @@ use ByteFerry\RqlParser\Lexer\Lexer;
 use ByteFerry\RqlParser\AstBuilder\NodeInterface;
 use ByteFerry\RqlParser\Lexer\Token;
 use ByteFerry\RqlParser\Lexer\ListLexer;
-
+use ByteFerry\RqlParser\AstBuilder\ParamaterRegister;
 
 /**
  * Class Parser
@@ -53,17 +53,33 @@ class Parser
     }
 
     /**
-     * @param $string
+     * @param bool $is_segmaent
      *
-     * @return Query[];
+     * @return QueryInterface
+     */
+    protected static function getOutputObject( $is_fragmaent = false){
+        if(false === $is_fragmaent){
+            return Query::of();
+        }
+        return Fragment::of();
+    }
+
+    /**
+     * @param      $string
+     * @param bool $is_fragmaent
+     *
+     * @return array
      * @throws \ByteFerry\RqlParser\Exceptions\RegexException
      */
-    public static function parse($string)
+    public static function parse($string, $is_fragmaent = false)
     {
+
         /** @var ListLexer $tokens */
         $tokens = Lexer::of()->tokenise($string);
 
         $instance = new static();
+
+        ParamaterRegister::newInstance();
 
         /** @var NodeInterface[] $node_list */
         $node_list = $instance->load($tokens);
@@ -76,9 +92,10 @@ class Parser
 
         $queries = [];
         foreach ($ir_list as $ir) {
-            $queries[] = Query::from($ir);
+             $query = self::getOutputObject($is_fragmaent);
+             $queries[] = $query->from($ir);
         }
-        dd($queries);
+//        dd(json_encode($queries[0]->toArray()));
         return $queries;
     }
 }

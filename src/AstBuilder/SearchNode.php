@@ -36,11 +36,11 @@ class SearchNode extends AstNode implements NodeInterface
     public function build(){
 
         $this->buildChildren();
-        $query =  trim($this->stage[0],'\'');
+        $query =  trim($this->stage[0],'\'""');
         if(trim($query,'%')===$query){
             $query .='%';
         }
-        $this->output = [$this->getNodeType() =>'\''.$query.'\''];
+        $this->output = [$this->getNodeType() =>$query];
         return $this->output;
     }
 

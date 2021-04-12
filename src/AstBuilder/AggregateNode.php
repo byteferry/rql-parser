@@ -32,7 +32,7 @@ class AggregateNode extends AstNode implements NodeInterface
      */
     public function build(){
         $this->buildChildren();
-        $this->output[0] = ' ' . $this->symbol . '(' . $this->stage[0]. ') ';
+        $this->output[0] =  $this->operator . '(' . $this->stage[0]. ')';
         return $this->output[0];
     }
 

@@ -33,7 +33,10 @@ class FilterNode extends AstNode implements NodeInterface
      */
     public function build(){
         $this->buildChildren();
-        $this->output = [$this->getSymbol() => $this->stage];
+        $this->output = [
+                $this->getSymbol() => $this->stage,
+                'paramaters' => ParamaterRegister::getInstance()->toArray(),
+            ];
         return $this->output;
     }
 

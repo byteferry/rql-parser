@@ -35,6 +35,9 @@ class PredicateNode extends AstNode implements NodeInterface
      */
     public function between(){
         [$a, $b, $c] = $this->stage;
+        $paramaterRegister =ParamaterRegister::getInstance();
+        $paramaterRegister->add($a . '_from',$b);
+        $paramaterRegister->add($a . '_to',$c);
         $this->output[0] = sprintf(' %s BETWEEN %s and %s ', $a, $b, $c);
         return $this->output[0];
     }
@@ -44,7 +47,8 @@ class PredicateNode extends AstNode implements NodeInterface
      */
     public function build(){
         $this->buildChildren();
-        $operator = Symbols::$operators[$this->symbol]??null;
+        $operator = Symbols::$operators[$this->operator]??null;
+        $paramaterRegister =ParamaterRegister::getInstance();
 
         /**
          * for extend other predicate
@@ -57,6 +61,7 @@ class PredicateNode extends AstNode implements NodeInterface
         if(null === $operator){
             throw new ParseException('The operators ' . $this->symbol . ' is not defined in the parser! ');
         }
+        $paramaterRegister->add($a,$b);
         $this->output[0] = sprintf(' %s %s %s ', $a,$operator,$b);
         return $this->output[0];
     }

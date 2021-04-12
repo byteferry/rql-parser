@@ -32,15 +32,12 @@ class LogicNode extends AstNode implements NodeInterface
      */
     public function build(){
         $this->buildChildren();
-
-        if($this->symbol === 'not'){
-            $argument = $this->stage[0];
-            $this->output[0] = sprintf(' not (%s)' ,$argument);
-            return $this->output[0] ;
+        if($this->operator === 'not'){
+            $this->output[] =  sprintf('%s %s', $this->operator, $this->stage[0] );
+            return $this->output[0];
         }
-        [$a,$b] = $this->stage;
-        $this->output[0] = sprintf('((%s) %s (%s))', $a, $this->symbol,$b);
-        return $this->output[0] ;
+        $this->output[] = '(' .implode(')'. $this->symbol .'(', $this->stage) .')';
+        return $this->output[0];
     }
 
     /**

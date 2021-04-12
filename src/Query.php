@@ -18,7 +18,7 @@ use ByteFerry\RqlParser\Abstracts\BaseObject;
  *
  * @package ByteFerry\RqlParser
  */
-class Query extends BaseObject
+class Query extends BaseObject implements QueryInterface
 {
 
     /**
@@ -32,11 +32,10 @@ class Query extends BaseObject
      *
      * @return \ByteFerry\RqlParser\Query
      */
-    public static function from($query)
+    public function from($query)
     {
-        $instance = new static();
-        $instance->container = $query;
-        return $instance;
+        $this->container = $query;
+        return $this;
     }
 
     /**
@@ -69,4 +68,89 @@ class Query extends BaseObject
     public function __isset($name){
         return isset($this->container[$name]);
     }
+
+    /**
+     * @return array|mixed
+     */
+    public function toArray(){
+        return $this->container;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function  getOperator(){
+        return $this->container['operator']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function  getQueryType(){
+        return $this->container['query_type']??null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceName(){
+        return $this->container['resource']??null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getColumns(){
+        return $this->container['columns']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getColumnsOperator(){
+        return $this->container['columns_operator']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getGroupBy(){
+        return $this->container['group_by']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getFilter(){
+        return $this->container['filter']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getSearch(){
+        return $this->container['search']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getSort(){
+        return $this->container['sort']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getHaving(){
+        return $this->container['having']??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getLimit(){
+        return $this->container['limit']??null;
+    }
+
 }
