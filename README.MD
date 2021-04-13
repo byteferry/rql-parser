@@ -9,7 +9,7 @@
 [![License](https://poser.pugx.org/byteferry/rql-parser/license)](//packagist.org/packages/byteferry/rql-parser)
  
 
-[中文(Chinese)](README_cn.MD)
+[中文(Chinese)](https://github.com/byteferry/rql-parser/blob/master/README.cn.md)
 
 This library consists of the following parts: 
 - lexer for tokenization RQL code
@@ -147,7 +147,7 @@ Here is a complex example. (Not a real query, but returns all properties)
 We could see that the parser add groupby automatically, and returns the property parematers for validation.
 
 ## Documentation
-[RQL Documentation](/docs/en_us/README.MD)
+[RQL Documentation](https://byteferry.github.io/rql-parser/#/en-us/)
 
 
 #### Contribution

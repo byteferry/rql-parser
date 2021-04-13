@@ -9,7 +9,7 @@
 [![License](https://poser.pugx.org/byteferry/rql-parser/license)](//packagist.org/packages/byteferry/rql-parser)
  
 
-[English(英文)](README.MD)
+[English(英文)](https://github.com/byteferry/rql-parser)
 
 此库包含以下几个部分：
 - lexer用于将RQL代码转换成Token列表。
@@ -147,7 +147,7 @@ use ByteFerry/RqlParser/Parser;
 我们可以发现，解析器会自动解析出并返回GroupBy。同时，还返回了parematers，这是干什么的呢？这是给你做数据验证的。
 
 ## 文档
-[在这里查看 开发与RQL文档](/docs/en_us/README.MD)
+[在这里查看 RQL文档](https://byteferry.github.io/rql-parser/#/zh-cn/)
 
 
 #### 贡献
