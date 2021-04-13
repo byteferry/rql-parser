@@ -19,24 +19,24 @@
       el: '#app',
         loadSidebar: true,
         loadNavbar: true,
+        homepage: '/en-us/README.md',
         mergeNavbar: true,
         maxLevel: 4,
         subMaxLevel: 4, 
-        name: 'RQL Document',
         search: {
             maxAge: 86400000, 
             paths: 'auto',
             placeholder: {
 	        '/zh-cn/': '搜索',
-	        '/en_us/': 'Type to search'
+	        '/en-us/': 'Type to search'
 	      },
             noData: {
 	        '/zh-cn/': '找不到结果',
-	        '/en_us/': 'No Results'
+	        '/en-us/': 'No Results'
 	      },
             depth: 3,
             hideOtherSidebarContent: false, 
-            pathNamespaces: ['/en_us','/zh_cn'],
+            pathNamespaces: ['/en-us','/zh-cn'],
         }
     }
   </script>
