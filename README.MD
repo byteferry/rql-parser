@@ -147,7 +147,7 @@ Here is a complex example. (Not a real query, but returns all properties)
 We could see that the parser add groupby automatically, and returns the property parematers for validation.
 
 ## Documentation
-[RQL Documentation](/docs/en_us/rql)
+[RQL Documentation](/docs/en_us/README.MD)
 
 
 #### Contribution

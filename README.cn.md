@@ -147,7 +147,7 @@ use ByteFerry/RqlParser/Parser;
 我们可以发现，解析器会自动解析出并返回GroupBy。同时，还返回了parematers，这是干什么的呢？这是给你做数据验证的。
 
 ## 文档
-[在这里查看 开发与RQL文档](/docs/en_us/rql)
+[在这里查看 开发与RQL文档](/docs/en_us/README.MD)
 
 
 #### 贡献
