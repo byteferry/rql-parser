@@ -27,6 +27,14 @@ This library consists of the following parts:
 * Fully  tested with phpUnit.
 * Zero dependencies. 
 
+## Why RQL 
+
+* For the same data, RQL has much fewer bytes than JSON.
+* Simple and easy to learn.
+* RQL will make the API interface more flexible
+* RQL is more suitable for small and medium-sized projects than GraphQL. 
+* RQL can save you more development time.
+
 ## Installation
 ```php
 $ composer requrire byteferry/rql-Parser

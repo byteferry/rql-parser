@@ -27,6 +27,14 @@
 * 经过phpUnit完全覆盖的单元测试。
 * 零第三方依赖。所以，方便集成安装。 
 
+## 为什么要用RQL 
+
+* 同样的数据，RQL要比Json短很多。
+* 简单易学。
+* RQL让API更加灵活。
+* RQL比GraphQL更适合于中小项目。
+* RQL可以节省大量开发时间。
+
 ## 安装
 ```php
 $ composer requrire byteferry/rql-Parser
