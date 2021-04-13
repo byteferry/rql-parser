@@ -1,2 +1,2 @@
 <!-- docs/_sidebar.md -->
-- [RQL DOCUMENT](README.md)
+- [RQL DOCUMENT](/en-us/README.md)
