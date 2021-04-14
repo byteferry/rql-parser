@@ -138,13 +138,6 @@ class Token
     /**
      * @return bool
      */
-    public function isOpen(){
-        return $this->type === Symbols::T_OPEN_PARENTHESIS;
-    }
-
-    /**
-     * @return bool
-     */
     public function isClose(){
         return ($this->type === Symbols::T_CLOSE_PARENTHESIS);
     }

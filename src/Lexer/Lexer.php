@@ -15,7 +15,6 @@ namespace ByteFerry\RqlParser\Lexer;
 
 use ByteFerry\RqlParser\Abstracts\BaseObject;
 use ByteFerry\RqlParser\Exceptions\ParseException;
-use ByteFerry\RqlParser\Exceptions\RegexException;
 
 /**
  * Class Lexer
@@ -112,7 +111,7 @@ class Lexer extends BaseObject
         for($offset=0;$offset<$end_pos;){
             preg_match($math_expression, $rql_str, $result,PREG_OFFSET_CAPTURE,$offset);
             if (preg_last_error() !== PREG_NO_ERROR) {
-                throw new RegexException(preg_last_error());
+                throw new ParseException(array_flip(get_defined_constants(true)['pcre'])[preg_last_error()]);
             }
 
             /**
