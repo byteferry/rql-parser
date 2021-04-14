@@ -64,6 +64,7 @@ final class QueryInterfaceTest extends TestCase
         $this->assertEquals($query->query_type,'Q_READ');
         $this->assertEquals($query->operator,'all');
         $this->assertTrue(isset($query->operator));
+        $this->assertEquals($query->name,null);
     }
 
     /** @test */
@@ -77,5 +78,7 @@ final class QueryInterfaceTest extends TestCase
         $this->assertEquals($query->columns,["id","sum(amount)"]);
         $this->assertEquals($query->group_by,["id"]);
         $this->assertEquals($query->columns_operator,'aggregate');
+        $this->assertFalse(isset($query->operator));
+        $this->assertEquals($query->operator,null);
     }
 }
