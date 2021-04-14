@@ -111,66 +111,6 @@ class ListLexer extends BaseObject
         return $token;
     }
 
-    /**
-     * @return void
-     */
-    public function feedError(){
-        throw new ParseException('Token lexer ' .$this->items[$this->position]->getSymbol(). ' error!');
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return bool|mixed
-     */
-    public function getWithNextType($type=Symbols::T_COLON){
-        while($this->items[$this->position]->isPunctuation()){
-            $this->position ++;
-        }
-        if(!$this->items[$this->position]->getNextType()===$type){
-            return $this->items[$this->position];
-        }
-        return false;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return bool|mixed
-     */
-    public function getWithPrevType($type=Symbols::T_COLON){
-        while($this->items[$this->position]->isPunctuation()){
-            $this->position ++;
-        }
-        if(!$this->items[$this->position]->getPrevType()===$type){
-            return $this->items[$this->position];
-        }
-        return false;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return Token[]|bool
-     */
-    public function consumePair($type = Symbols::T_COLON){
-        $tokenA = $this->getWithNextType($type);
-        if(false === $tokenA){
-            return false;
-        }
-        $tokenB =  $this->getWithPrevType($type);
-        if(false === $tokenB){
-            $this->feedError();
-        }
-        return [$tokenA,$tokenB];
-    }
-
-    /**
-     * @return int
-     */
-    public function getCurrentIndex(){
-        return $this->position;
-    }
 
     /**
      * @return mixed
@@ -204,6 +144,9 @@ class ListLexer extends BaseObject
         return $this->items[$this->position]->isClose();
     }
 
+    /**
+     * @return bool
+     */
     public function noArgs(){
         $token = $this->items[$this->position];
         return (($token->isOpen())&&($token->willClose()));

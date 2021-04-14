@@ -19,13 +19,6 @@ namespace ByteFerry\RqlParser\AstBuilder;
  */
 class ArrayNode extends AstNode implements NodeInterface
 {
-    /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'array';
-    }
 
     /**
      * @return mixed
@@ -36,10 +29,4 @@ class ArrayNode extends AstNode implements NodeInterface
         return $this->output[0];
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->stage;
-    }
 }

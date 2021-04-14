@@ -20,14 +20,6 @@ class LogicNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'logic';
-    }
-
-    /**
      * @return mixed
      */
     public function build(){
@@ -40,10 +32,4 @@ class LogicNode extends AstNode implements NodeInterface
         return $this->output[0];
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output ;
-    }
 }

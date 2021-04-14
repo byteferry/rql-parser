@@ -23,14 +23,6 @@ class PredicateNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'predicate';
-    }
-
-    /**
      * @return mixed
      */
     public function between(){
@@ -66,10 +58,4 @@ class PredicateNode extends AstNode implements NodeInterface
         return $this->output[0];
     }
 
-    /**
-     * @return mixed
-     */
-    public function toArray(){
-        return  $this->stage[0];
-    }
 }

@@ -22,14 +22,6 @@ class ConstantNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'constant';
-    }
-
-    /**
      * @return int
      */
     protected function true(){
@@ -82,10 +74,4 @@ class ConstantNode extends AstNode implements NodeInterface
         return  $this->output[0];
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return  $this->output[0];
-    }
 }

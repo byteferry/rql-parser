@@ -20,10 +20,6 @@ use ByteFerry\RqlParser\Lexer\ListLexer;
  */
 interface NodeInterface
 {
-    /**
-     * @return mixed
-     */
-    public function getNodeType();
 
     /**
      * @param ListLexer $ListLexer
@@ -37,9 +33,5 @@ interface NodeInterface
      */
     public function build();
 
-    /**
-     * @return mixed
-     */
-    public function toArray();
 
 }

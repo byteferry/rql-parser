@@ -20,27 +20,12 @@ namespace ByteFerry\RqlParser\AstBuilder;
 class AggregateNode extends AstNode implements NodeInterface
 {
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'aggregate';
-    }
-
-    /**
      * @return mixed
      */
     public function build(){
         $this->buildChildren();
         $this->output[0] =  $this->operator . '(' . $this->stage[0]. ')';
         return $this->output[0];
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return  $this->output;
     }
 
 }

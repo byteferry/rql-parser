@@ -21,24 +21,6 @@ class LimitNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @var int
-     */
-    protected $skip_or_page = 0;
-
-    /**
-     * @var int
-     */
-    protected $max_count = 0;
-
-    /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'limit';
-    }
-
-    /**
      * @return mixed
      */
     public function build(){
@@ -49,10 +31,4 @@ class LimitNode extends AstNode implements NodeInterface
 
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output;
-    }
 }

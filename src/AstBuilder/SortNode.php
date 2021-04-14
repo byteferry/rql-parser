@@ -82,10 +82,4 @@ class SortNode extends AstNode implements NodeInterface
         return $this->output;
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output;
-    }
 }

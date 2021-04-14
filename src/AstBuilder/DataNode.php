@@ -21,19 +21,6 @@ class DataNode extends AstNode implements nodeInterface
 {
 
     /**
-     * @var array;
-     */
-    protected $data;
-
-    /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'data';
-    }
-
-    /**
      * @return mixed
      */
     public function build(){
@@ -45,10 +32,4 @@ class DataNode extends AstNode implements nodeInterface
         return ['data' => $this->output];
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return ['data' => $this->output];
-    }
 }

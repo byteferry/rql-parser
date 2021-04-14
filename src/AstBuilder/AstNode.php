@@ -127,13 +127,6 @@ abstract class AstNode
     }
 
     /**
-     * @return string
-     */
-    public function getOperator(){
-        return $this->operator;
-    }
-
-    /**
      * @param $ListLexer
      *
      * @return mixed

@@ -21,14 +21,6 @@ class ColumnsNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'columns';
-    }
-
-    /**
      * @return array
      */
     protected function buildChildren(){
@@ -48,16 +40,10 @@ class ColumnsNode extends AstNode implements NodeInterface
      */
     public function build(){
         $groupBy = $this->buildChildren();
-        $this->output[$this->getNodeType()] = $this->stage;
+        $this->output['columns'] = $this->stage;
         $this->output['columns_operator'] = $this->getSymbol();
         $this->output['group_by'] = $groupBy;
         return $this->output;
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output;
-    }
 }

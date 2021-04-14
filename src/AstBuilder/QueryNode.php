@@ -24,14 +24,6 @@ class QueryNode extends AstNode implements NodeInterface
 {
 
     /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'query';
-    }
-
-    /**
      * @param $array
      *
      * @return void
@@ -69,10 +61,4 @@ class QueryNode extends AstNode implements NodeInterface
         return $this->output;
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output;
-    }
 }

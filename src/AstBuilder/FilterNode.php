@@ -19,14 +19,6 @@ namespace ByteFerry\RqlParser\AstBuilder;
 class FilterNode extends AstNode implements NodeInterface
 {
 
-    /**
-     * @return string
-     */
-    public function getNodeType()
-    {
-        return 'filter';
-    }
-
 
     /**
      * @return mixed
@@ -40,10 +32,4 @@ class FilterNode extends AstNode implements NodeInterface
         return $this->output;
     }
 
-    /**
-     * @return mixed|void
-     */
-    public function toArray(){
-        return $this->output;
-    }
 }
