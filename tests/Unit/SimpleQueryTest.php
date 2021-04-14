@@ -7,9 +7,9 @@ declare(strict_types=1);
  * Time: 13:42
  */
 
-namespace ByteFerry\tests\Unit;
+namespace ByteFerry\Tests\Unit;
 
-use ByteFerry\tests\TestCase;
+use ByteFerry\Tests\TestCase;
 
 use ByteFerry\RqlParser\Parser;
 

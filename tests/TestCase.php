@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ByteFerry\tests;
+namespace ByteFerry\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
