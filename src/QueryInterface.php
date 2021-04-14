@@ -40,13 +40,6 @@ interface QueryInterface
      */
     public function __get($name);
 
-    /**
-     * @param $name
-     * @param $value
-     *
-     * @return void
-     */
-    public function __set($name,$value);
 
     /**
      * @param $name

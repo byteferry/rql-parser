@@ -113,14 +113,6 @@ class Token
     /**
      * @return int
      */
-    public function getNextType()
-    {
-        return $this->next_type;
-    }
-
-    /**
-     * @return int
-     */
     public function getType()
     {
         return $this->type;
@@ -148,13 +140,6 @@ class Token
      */
     public function isOpen(){
         return $this->type === Symbols::T_OPEN_PARENTHESIS;
-    }
-
-    /**
-     * @return bool
-     */
-    public function willClose(){
-        return $this->getNextType() === Symbols::T_CLOSE_PARENTHESIS;
     }
 
     /**

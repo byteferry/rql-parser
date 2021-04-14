@@ -55,9 +55,6 @@ class ConstantNode extends AstNode implements NodeInterface
      * @return int|void
      */
     public function load(ListLexer $ListLexer){
-        if($ListLexer->noArgs()){
-            $ListLexer->forward(2);
-        }
         return $ListLexer->getNextIndex();
     }
 

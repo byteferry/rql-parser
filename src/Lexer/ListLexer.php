@@ -130,12 +130,6 @@ class ListLexer extends BaseObject
         return ++$this->position;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNextType(){
-        return $this->items[$this->position]->getNextType();
-    }
 
     /**
      * @return mixed
@@ -147,25 +141,8 @@ class ListLexer extends BaseObject
     /**
      * @return bool
      */
-    public function noArgs(){
-        $token = $this->items[$this->position];
-        return (($token->isOpen())&&($token->willClose()));
-    }
-
-    /**
-     * @return bool
-     */
     public function isEnd(){
         return $this->position+1 >= count($this->items);
-    }
-
-    /**
-     * @param $step
-     *
-     * @return void
-     */
-    public function forward($step){
-        $this->position += $step;
     }
 
     /**

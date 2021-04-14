@@ -32,7 +32,7 @@ final class SimpleQueryTest extends TestCase
         'first' =>['first(user,filter(gt(age,10)))','{"resource":"user","filter":[" age > 10 "],"paramaters":{"age":"10"},"operator":"first","query_type":"Q_READ"}'],
         'increment' =>['increment(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"increment","query_type":"Q_WRITE"}'],
         'minus' =>['minus(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"decrement","query_type":null}'],
-        'one' =>['one(user,filter(eq(id,3)))','{"resource":"user","filter":[" id = 3 "],"paramaters":{"id":"3"},"operator":"one","query_type":"Q_READ"}'],
+        'one' =>['one(user,filter(eq(id,3)),search(ada))','{"resource":"user","filter":[" id = 3 "],"paramaters":{"id":"3"},"search":"ada%","operator":"one","query_type":"Q_READ"}'],
         'plus' =>['plus(Article,cols(read_count))','{"resource":"Article","columns":["read_count"],"columns_operator":"cols","group_by":[],"operator":"increment","query_type":null}'],
         'update' =>['update(user,data(age:18),filter(eq(id,3)))','{"resource":"user","data":{"age":"18"},"filter":[" id = 3 "],"paramaters":{"id":"3"},"operator":"update","query_type":"Q_WRITE"}']
     ];

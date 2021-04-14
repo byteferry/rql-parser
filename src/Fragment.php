@@ -54,17 +54,6 @@ class Fragment extends BaseObject implements QueryInterface
 
     /**
      * @param $name
-     * @param $value
-     *
-     * @return void
-     */
-    public function __set($name, $value)
-    {
-        $this->container[$name] = $value;
-    }
-
-    /**
-     * @param $name
      *
      * @return bool
      */

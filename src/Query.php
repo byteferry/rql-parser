@@ -52,16 +52,6 @@ class Query extends BaseObject implements QueryInterface
 
     /**
      * @param $name
-     * @param $value
-     *
-     * @return void
-     */
-    public function __set($name,$value){
-        $this->container[$name] = $value;
-    }
-
-    /**
-     * @param $name
      *
      * @return bool
      */
@@ -122,7 +112,14 @@ class Query extends BaseObject implements QueryInterface
      * @return mixed|null
      */
     public function getFilter(){
-        return $this->container['filter']??null;
+        return $this->container['filter'][0]??null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getParameters(){
+        return $this->container['paramaters']??null;
     }
 
     /**
@@ -143,7 +140,7 @@ class Query extends BaseObject implements QueryInterface
      * @return mixed|null
      */
     public function getHaving(){
-        return $this->container['having']??null;
+        return $this->container['having'][0]??null;
     }
 
     /**
