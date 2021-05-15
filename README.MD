@@ -2,7 +2,7 @@
 >ByteFerry RQL-Parser is used for parsing the RQL text to the paramaters with PHP array structure for the calling of php methods. 
 
 [![Build Status](https://travis-ci.org/byteferry/rql-parser.png?branch=master)](https://travis-ci.org/byteferry/rql-parser)
-[![StyleCI](https://github.styleci.io/repos/173471239/shield?branch=master)](https://github.styleci.io/repos/173471239?branch=master)
+[![StyleCI](https://github.styleci.io/repos/356659560/shield?branch=master)](https://github.styleci.io/repos/356659560?branch=master)
 [![Codecov branch](https://img.shields.io/codecov/c/github/byteferry/rql-parser/develop.svg?style=flat-square&logo=codecov)](https://codecov.io/github/byteferry/rql-parser)
 [![Latest Stable Version](https://poser.pugx.org/byteferry/rql-parser/v)](//packagist.org/packages/byteferry/rql-parser)
 [![Total Downloads](https://poser.pugx.org/byteferry/rql-parser/downloads)](//packagist.org/packages/byteferry/rql-parser)
