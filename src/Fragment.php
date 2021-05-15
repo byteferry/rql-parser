@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -15,18 +16,14 @@ namespace ByteFerry\RqlParser;
 use ByteFerry\RqlParser\Abstracts\BaseObject;
 
 /**
- * Class Fragment
- *
- * @package ByteFerry\RqlParser
+ * Class Fragment.
  */
 class Fragment extends BaseObject implements QueryInterface
 {
-
     /**
      * @var array
      */
     protected $container = [];
-
 
     /**
      * @param array $query
@@ -36,6 +33,7 @@ class Fragment extends BaseObject implements QueryInterface
     public function from($query)
     {
         $this->container = $query;
+
         return $this;
     }
 
@@ -49,6 +47,7 @@ class Fragment extends BaseObject implements QueryInterface
         if (isset($this->container[$name])) {
             return $this->container[$name];
         }
+
         return null;
     }
 
@@ -65,7 +64,8 @@ class Fragment extends BaseObject implements QueryInterface
     /**
      * @return array|mixed
      */
-    public function toArray(){
+    public function toArray()
+    {
         return $this->container;
     }
 }

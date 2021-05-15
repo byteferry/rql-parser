@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -12,11 +13,9 @@ declare(strict_types=1);
 namespace ByteFerry\RqlParser\AstBuilder;
 
 /**
- * Class ParamaterRegister
+ * Class ParamaterRegister.
  *
  * It is used for keep the data of predicates for validation.
- *
- * @package ByteFerry\RqlParser\AstBuilder
  */
 class ParamaterRegister
 {
@@ -33,22 +32,26 @@ class ParamaterRegister
     /**
      * @return \app\libraries\AppDataRegister
      */
-    public static function getInstance(){
+    public static function getInstance()
+    {
         return self::$instance;
     }
 
     /**
      * @return array
      */
-    public function toArray(){
+    public function toArray()
+    {
         return $this->container;
     }
 
     /**
      * @return \ByteFerry\RqlParser\AstBuilder\ParamaterRegister|null
      */
-    public static function newInstance(){
+    public static function newInstance()
+    {
         self::$instance = new static();
+
         return self::$instance;
     }
 
@@ -58,10 +61,11 @@ class ParamaterRegister
      *
      * @return void
      */
-    public function add($key,$value){
-        if('null' == $value){
+    public function add($key, $value)
+    {
+        if ('null' == $value) {
             $value = null;
         }
-        $this->container[$key]=$value;
+        $this->container[$key] = $value;
     }
 }

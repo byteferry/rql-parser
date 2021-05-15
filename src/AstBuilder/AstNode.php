@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,16 +12,13 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 use ByteFerry\RqlParser\Lexer\ListLexer;
 use ByteFerry\RqlParser\Lexer\Token;
 
 /**
- * abstract class of node of abstract syntax tree
+ * abstract class of node of abstract syntax tree.
  *
  * Class AstNode
- *
- * @package ByteFerry\RqlParser\Ast
  */
 abstract class AstNode
 {
@@ -42,13 +40,14 @@ abstract class AstNode
     protected $argument = [];
 
     /**
-     * keep the built components
+     * keep the built components.
+     *
      * @var array
      */
     protected $stage = [];
 
     /**
-     * keep the build result of children
+     * keep the build result of children.
      *
      * @var array
      */
@@ -58,7 +57,8 @@ abstract class AstNode
      * @param $operator
      * @param $symbol
      */
-    public function __construct($operator,$symbol){
+    public function __construct($operator, $symbol)
+    {
         $this->operator = $operator;
         $this->symbol = $symbol;
     }
@@ -69,17 +69,18 @@ abstract class AstNode
      *
      * @return \ByteFerry\RqlParser\AstBuilder\AstNode|static
      */
-    public static function of($operator,$symbol){
-
+    public static function of($operator, $symbol)
+    {
         return new static($operator,$symbol);
     }
 
     /**
      * @return void
      */
-    protected function buildChildren(){
+    protected function buildChildren()
+    {
         /** @var NodeInterface $child */
-        foreach($this->argument as $child){
+        foreach ($this->argument as $child) {
             $this->stage[] = $child->build();
         }
     }
@@ -89,13 +90,14 @@ abstract class AstNode
      *
      * @return int|void
      */
-    public function load(ListLexer $ListLexer){
+    public function load(ListLexer $ListLexer)
+    {
 
         /** @var Token $token */
         $token = $ListLexer->consume();
 
-        for(; (false !== $token); $token = $ListLexer->consume()){
-            if($ListLexer->isClose()){
+        for (; (false !== $token); $token = $ListLexer->consume()) {
+            if ($ListLexer->isClose()) {
                 return $ListLexer->getNextIndex();
             }
             /** @var NodeInterface $node */
@@ -103,25 +105,28 @@ abstract class AstNode
             $node->load($ListLexer);
 
             $this->argument[] = $node;
-            if($ListLexer->isClose()){
+            if ($ListLexer->isClose()) {
                 return $ListLexer->getNextIndex();
             }
         }
+
         return $ListLexer->getNextIndex();
     }
 
     /**
      * @return string
      */
-    public function getSymbol(){
+    public function getSymbol()
+    {
         return $this->symbol;
     }
 
     /**
      * @return \Generator
      */
-    public function pair(){
-        for($i=0,$j=count($this->stage);$i<$j;$i+=2) {
+    public function pair()
+    {
+        for ($i = 0,$j = count($this->stage); $i < $j; $i += 2) {
             yield [$this->stage[$i], $this->stage[$i + 1]];
         }
     }

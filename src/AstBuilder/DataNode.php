@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,25 +12,22 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class DataNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class DataNode.
  */
 class DataNode extends AstNode implements nodeInterface
 {
-
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $this->buildChildren();
-        foreach($this->pair() as $item){
+        foreach ($this->pair() as $item) {
             [$property, $value] = $item;
-            $this->output[$property] = trim($value,'""');
+            $this->output[$property] = trim($value, '""');
         }
+
         return ['data' => $this->output];
     }
-
 }

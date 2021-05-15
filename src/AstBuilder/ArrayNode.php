@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,22 +12,19 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class ArrayNode
- *
- * @package ByteFerry\RqlParser\AstBuilder
+ * Class ArrayNode.
  */
 class ArrayNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $this->buildChildren();
-        $this->output[0] =  ' (' . implode(', ', $this->stage) . ') ';
+        $this->output[0] = ' ('.implode(', ', $this->stage).') ';
+
         return $this->output[0];
     }
-
 }

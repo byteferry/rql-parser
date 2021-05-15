@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,24 +12,19 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class LimitNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class LimitNode.
  */
 class LimitNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return mixed
      */
-    public function build(){
-
+    public function build()
+    {
         $this->buildChildren();
-        $this->output = ['limit'=>[$this->stage[0],$this->stage[1]??0]] ;
+        $this->output = ['limit' => [$this->stage[0], $this->stage[1] ?? 0]];
+
         return $this->output;
-
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -14,9 +15,7 @@ namespace ByteFerry\Tests;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 /**
- * Class TestCase
- *
- * @package ByteFerry\tests
+ * Class TestCase.
  */
 class TestCase extends Orchestra
 {

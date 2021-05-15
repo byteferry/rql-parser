@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -14,38 +15,39 @@ namespace ByteFerry\RqlParser\AstBuilder;
 use ByteFerry\RqlParser\Lexer\ListLexer;
 
 /**
- * Class ValueNode
- *
- * @package ByteFerry\RqlParser\AstBuilder
+ * Class ValueNode.
  */
 class ConstantNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return int
      */
-    protected function true(){
+    protected function true()
+    {
         return 1;
     }
 
     /**
      * @return int
      */
-    protected function false(){
+    protected function false()
+    {
         return 0;
     }
 
     /**
      * @return string
      */
-    protected function null(){
+    protected function null()
+    {
         return 'null';
     }
 
     /**
      * @return string
      */
-    protected function empty(){
+    protected function empty()
+    {
         return '""';
     }
 
@@ -54,21 +56,24 @@ class ConstantNode extends AstNode implements NodeInterface
      *
      * @return int|void
      */
-    public function load(ListLexer $ListLexer){
+    public function load(ListLexer $ListLexer)
+    {
         return $ListLexer->getNextIndex();
     }
 
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $symbol = $this->symbol;
-        if(method_exists($this,$symbol)){
+        if (method_exists($this, $symbol)) {
             $this->output[0] = $this->$symbol();
+
             return  $this->output[0];
         }
         $this->output[0] = $symbol;
+
         return  $this->output[0];
     }
-
 }

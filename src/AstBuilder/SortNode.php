@@ -11,20 +11,16 @@
 
 declare(strict_types=1);
 
-
 namespace ByteFerry\RqlParser\AstBuilder;
 
-use ByteFerry\RqlParser\Lexer\Symbols;
 use ByteFerry\RqlParser\Lexer\ListLexer;
+use ByteFerry\RqlParser\Lexer\Symbols;
 
 /**
- * Class SortNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class SortNode.
  */
 class SortNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return string
      */
@@ -38,24 +34,22 @@ class SortNode extends AstNode implements NodeInterface
      *
      * @return \Generator|void
      */
-    protected function getArguments(ListLexer $ListLexer){
-
+    protected function getArguments(ListLexer $ListLexer)
+    {
         $token = $ListLexer->consume();
         // the sort node will end with ')'
         // we only need consume the word token
-        while(!$token->isClose()){
+        while (! $token->isClose()) {
             $property = $token->getSymbol();
             $direction = 'ASC';
 
             // with prev type we could know the direction.
-            if($token->getPrevType() === Symbols::T_MINUS){
+            if ($token->getPrevType() === Symbols::T_MINUS) {
                 $direction = 'DESC';
             }
             yield [$property, $direction];
             $token = $ListLexer->consume();
-
         }
-
     }
 
     /**
@@ -63,11 +57,12 @@ class SortNode extends AstNode implements NodeInterface
      *
      * @return int|void
      */
-    public function load(ListLexer $ListLexer){
+    public function load(ListLexer $ListLexer)
+    {
         /**
-         * set resource_name value
+         * set resource_name value.
          */
-        foreach($this->getArguments($ListLexer) as $argument){
+        foreach ($this->getArguments($ListLexer) as $argument) {
             $this->stage[] = $argument;
         }
         // return the $index, perhaps there are other queries still.
@@ -77,9 +72,10 @@ class SortNode extends AstNode implements NodeInterface
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $this->output = [$this->getNodeType() => $this->stage];
+
         return $this->output;
     }
-
 }
