@@ -11,16 +11,13 @@
 
 declare(strict_types=1);
 
-
 namespace ByteFerry\RqlParser\Exceptions;
 
 use RuntimeException;
+
 /**
- * Class ParseExceprion
- *
- * @package ByteFerry\RqlParser\exceptions
+ * Class ParseExceprion.
  */
 final class ParseException extends RuntimeException
 {
-
 }

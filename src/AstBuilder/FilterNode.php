@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -8,28 +9,25 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class FilterMode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class FilterMode.
  */
 class FilterNode extends AstNode implements NodeInterface
 {
-
-
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $this->buildChildren();
         $this->output = [
-                $this->getSymbol() => $this->stage,
-                'paramaters' => ParamaterRegister::getInstance()->toArray(),
-            ];
+            $this->getSymbol() => $this->stage,
+            'paramaters' => ParamaterRegister::getInstance()->toArray(),
+        ];
+
         return $this->output;
     }
-
 }

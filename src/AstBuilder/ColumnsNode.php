@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,39 +12,38 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class ColumnsNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class ColumnsNode.
  */
 class ColumnsNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return array
      */
-    protected function buildChildren(){
-        $groupBy=[];
+    protected function buildChildren()
+    {
+        $groupBy = [];
         /** @var NodeInterface $child */
-        foreach($this->argument as $child){
+        foreach ($this->argument as $child) {
             $this->stage[] = $child->build();
-            if(($this->operator === 'aggregate')&&($child instanceof ConstantNode)){
+            if (($this->operator === 'aggregate') && ($child instanceof ConstantNode)) {
                 $groupBy[] = $child->getSymbol();
             }
         }
+
         return $groupBy;
     }
 
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $groupBy = $this->buildChildren();
         $this->output['columns'] = $this->stage;
         $this->output['columns_operator'] = $this->getSymbol();
         $this->output['group_by'] = $groupBy;
+
         return $this->output;
     }
-
 }

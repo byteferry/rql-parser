@@ -11,22 +11,18 @@
 
 declare(strict_types=1);
 
-
 namespace ByteFerry\RqlParser\Abstracts;
 
 /**
- * Class BaseObject
- *
- * @package ByteFerry\RqlParser\abstracts
+ * Class BaseObject.
  */
 abstract class BaseObject
 {
-
     /**
      * @return \ByteFerry\RqlParser\Abstracts\BaseObject|static
      */
-    public static function of(){
+    public static function of()
+    {
         return new static();
     }
-
 }
