@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -14,13 +15,10 @@ namespace ByteFerry\RqlParser\AstBuilder;
 use ByteFerry\RqlParser\Lexer\ListLexer;
 
 /**
- * Interface NodeInterface
- *
- * @package ByteFerry\RqlParser\Ast
+ * Interface NodeInterface.
  */
 interface NodeInterface
 {
-
     /**
      * @param ListLexer $ListLexer
      *
@@ -32,6 +30,4 @@ interface NodeInterface
      * @return mixed
      */
     public function build();
-
-
 }

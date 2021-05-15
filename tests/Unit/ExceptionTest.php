@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,32 +12,30 @@ declare(strict_types=1);
 
 namespace ByteFerry\Tests\Unit;
 
-use ByteFerry\RqlParser\Fragment;
-use ByteFerry\Tests\TestCase;
+use ByteFerry\RqlParser\Exceptions\ParseException;
 use  ByteFerry\RqlParser\Parser;
-use  ByteFerry\RqlParser\Exceptions\ParseException;
+use  ByteFerry\Tests\TestCase;
+
 /**
- * Class ExceptionTest
- *
- * @package ByteFerry\Tests\Unit
+ * Class ExceptionTest.
  */
 final class ExceptionTest extends TestCase
 {
     /** @test */
-    public function testExceptions(){
-        $rql_str= 'aggregate(id,,sum(amount))'; //,    //,
-        try{
-        $result = Parser::parse($rql_str,true);
-        }catch(\Exception $e){
+    public function testExceptions()
+    {
+        $rql_str = 'aggregate(id,,sum(amount))'; //,    //,
+        try {
+            $result = Parser::parse($rql_str, true);
+        } catch (\Exception $e) {
             $this->assertTrue($e instanceof ParseException);
         }
 
-        $rql_str= 'aggregate(id,sum(amount)'; //,    //,
-        try{
-            $result = Parser::parse($rql_str,true);
-        }catch(\Exception $e){
+        $rql_str = 'aggregate(id,sum(amount)'; //,    //,
+        try {
+            $result = Parser::parse($rql_str, true);
+        } catch (\Exception $e) {
             $this->assertTrue($e instanceof ParseException);
         }
-
     }
 }

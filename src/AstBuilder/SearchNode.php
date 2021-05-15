@@ -13,15 +13,11 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser\AstBuilder;
 
-
 /**
- * Class SearchNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class SearchNode.
  */
 class SearchNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return string
      */
@@ -33,15 +29,15 @@ class SearchNode extends AstNode implements NodeInterface
     /**
      * @return mixed
      */
-    public function build(){
-
+    public function build()
+    {
         $this->buildChildren();
-        $query =  trim($this->stage[0],'\'""');
-        if(trim($query,'%')===$query){
-            $query .='%';
+        $query = trim($this->stage[0], '\'""');
+        if (trim($query, '%') === $query) {
+            $query .= '%';
         }
-        $this->output = [$this->getNodeType() =>$query];
+        $this->output = [$this->getNodeType() => $query];
+
         return $this->output;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -12,15 +13,13 @@ declare(strict_types=1);
 namespace ByteFerry\RqlParser;
 
 /**
- * Interface QueryInterface
+ * Interface QueryInterface.
  *
- * @package ByteFerry\RqlParser
  *
  * @property array $container
  */
 interface QueryInterface
 {
-
     /**
      * @return QueryInterface
      */
@@ -40,14 +39,12 @@ interface QueryInterface
      */
     public function __get($name);
 
-
     /**
      * @param $name
      *
      * @return bool
      */
     public function __isset($name);
-
 
     /**
      * @return mixed

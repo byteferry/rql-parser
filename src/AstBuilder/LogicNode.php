@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -12,24 +13,23 @@ declare(strict_types=1);
 namespace ByteFerry\RqlParser\AstBuilder;
 
 /**
- * Class LogicNode
- *
- * @package ByteFerry\RqlParser\Ast
+ * Class LogicNode.
  */
 class LogicNode extends AstNode implements NodeInterface
 {
-
     /**
      * @return mixed
      */
-    public function build(){
+    public function build()
+    {
         $this->buildChildren();
-        if($this->operator === 'not'){
-            $this->output[] =  sprintf('%s %s', $this->operator, $this->stage[0] );
+        if ($this->operator === 'not') {
+            $this->output[] = sprintf('%s %s', $this->operator, $this->stage[0]);
+
             return $this->output[0];
         }
-        $this->output[] = '(' .implode(')'. $this->symbol .'(', $this->stage) .')';
+        $this->output[] = '('.implode(')'.$this->symbol.'(', $this->stage).')';
+
         return $this->output[0];
     }
-
 }

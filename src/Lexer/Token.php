@@ -11,38 +11,39 @@
 
 declare(strict_types=1);
 
-
 namespace ByteFerry\RqlParser\Lexer;
 
 use ByteFerry\RqlParser\Exceptions\ParseException;
+
 /**
- * Class Token
- *
- * @package ByteFerry\RqlParser
+ * Class Token.
  */
 class Token
 {
     /**
+     * symbol type.
      *
-     * symbol type
      * @var int
      */
     protected $type = 0;
 
     /**
-     * symbol content string
+     * symbol content string.
+     *
      * @var string
      */
     protected $symbol = '';
 
     /**
-     * the lexer type of next node
+     * the lexer type of next node.
+     *
      * @var int
      */
     protected $next_type = -1;
 
     /**
-     * the lexer type of previous node
+     * the lexer type of previous node.
+     *
      * @var int
      */
     protected $previous_type = -1;
@@ -59,22 +60,22 @@ class Token
      *
      * @return  static
      */
-    public static function from($type,$symbol,$previous_type = -1)
+    public static function from($type, $symbol, $previous_type = -1)
     {
         /**
-         * ensure the syntax of the rql with simple ABNF definition
+         * ensure the syntax of the rql with simple ABNF definition.
          */
-        if(-1 !== $previous_type){
-            if(!in_array($type,Symbols::$rules[$previous_type])){
-                throw new ParseException('Syntex error in Node of ' .$symbol);
+        if (-1 !== $previous_type) {
+            if (! in_array($type, Symbols::$rules[$previous_type])) {
+                throw new ParseException('Syntex error in Node of '.$symbol);
             }
         }
-
 
         $instance = new static();
         $instance->type = $type;
         $instance->symbol = $symbol;
         $instance->previous_type = $previous_type;
+
         return $instance;
     }
 
@@ -83,11 +84,13 @@ class Token
      *
      * @return \ByteFerry\RqlParser\Lexer\Token
      */
-    public static function makeArrayToken($previousType){
+    public static function makeArrayToken($previousType)
+    {
         $instance = new static();
         $instance->type = Symbols::T_WORD;
         $instance->symbol = 'arr';
         $instance->previous_type = $previousType;
+
         return $instance;
     }
 
@@ -96,7 +99,8 @@ class Token
      *
      * @return void
      */
-    public function setLevel($level){
+    public function setLevel($level)
+    {
         $this->level = $level;
     }
 
@@ -123,8 +127,9 @@ class Token
      *
      * @return void
      */
-    public function setPrevType($type){
-        $this->previous_type=$type;
+    public function setPrevType($type)
+    {
+        $this->previous_type = $type;
     }
 
     /**
@@ -138,24 +143,26 @@ class Token
     /**
      * @return bool
      */
-    public function isClose(){
-        return ($this->type === Symbols::T_CLOSE_PARENTHESIS);
+    public function isClose()
+    {
+        return $this->type === Symbols::T_CLOSE_PARENTHESIS;
     }
 
     /**
      * @return int
      */
-    public function getPrevType(){
+    public function getPrevType()
+    {
         return $this->previous_type;
     }
 
     /**
      * @return bool
      */
-    public function isPunctuation(){
-        return !( ($this->type === Symbols::T_WORD)
+    public function isPunctuation()
+    {
+        return ! (($this->type === Symbols::T_WORD)
                || ($this->type === Symbols::T_STRING)
                );
     }
-
 }

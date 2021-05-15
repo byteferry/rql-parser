@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -14,22 +15,20 @@ namespace ByteFerry\RqlParser\AstBuilder;
 use ByteFerry\RqlParser\Lexer\Symbols;
 
 /**
- * abstract node of abstract syntax tree (AST)
+ * abstract node of abstract syntax tree (AST).
  *
  * Class RqlNode
- *
- * @package ByteFerry\RqlParser\Ast
  */
 class QueryNode extends AstNode implements NodeInterface
 {
-
     /**
      * @param $array
      *
      * @return void
      */
-    protected function addStage($array){
-        foreach($array as $key => $item){
+    protected function addStage($array)
+    {
+        foreach ($array as $key => $item) {
             $this->stage[$key] = $item;
         }
     }
@@ -37,13 +36,14 @@ class QueryNode extends AstNode implements NodeInterface
     /**
      * @return void
      */
-    protected function buildChildren(){
+    protected function buildChildren()
+    {
         /** @var NodeInterface $child */
-        foreach($this->argument as $child){
+        foreach ($this->argument as $child) {
             $result = $child->build();
-            if(!is_array($result)){
+            if (! is_array($result)) {
                 $this->stage['resource'] = $result;
-            }else{
+            } else {
                 $this->addStage($result);
             }
         }
@@ -52,13 +52,13 @@ class QueryNode extends AstNode implements NodeInterface
     /**
      * @return mixed
      */
-    public function build(){
-
+    public function build()
+    {
         $this->buildChildren();
         $this->output = $this->stage;
         $this->output['operator'] = $this->operator;
-        $this->output['query_type'] = Symbols::$query_type_mapping[$this->symbol]??null;
+        $this->output['query_type'] = Symbols::$query_type_mapping[$this->symbol] ?? null;
+
         return $this->output;
     }
-
 }

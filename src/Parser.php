@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the ByteFerry/Rql-Parser package.
@@ -11,17 +12,15 @@ declare(strict_types=1);
 
 namespace ByteFerry\RqlParser;
 
-use ByteFerry\RqlParser\AstBuilder\NodeVisitor;
-use ByteFerry\RqlParser\Lexer\Lexer;
 use ByteFerry\RqlParser\AstBuilder\NodeInterface;
-use ByteFerry\RqlParser\Lexer\Token;
-use ByteFerry\RqlParser\Lexer\ListLexer;
+use ByteFerry\RqlParser\AstBuilder\NodeVisitor;
 use ByteFerry\RqlParser\AstBuilder\ParamaterRegister;
+use ByteFerry\RqlParser\Lexer\Lexer;
+use ByteFerry\RqlParser\Lexer\ListLexer;
+use ByteFerry\RqlParser\Lexer\Token;
 
 /**
- * Class Parser
- *
- * @package ByteFerry\RqlParser
+ * Class Parser.
  */
 class Parser
 {
@@ -35,13 +34,13 @@ class Parser
      *
      * @return \ByteFerry\RqlParser\AstBuilder\NodeInterface[]
      */
-    protected function load(ListLexer $ListLexer){
+    protected function load(ListLexer $ListLexer)
+    {
         $ListLexer->rewind();
         /** @var Token $token */
         $token = $ListLexer->current();
 
-        for(; (false !== $token); $token = $ListLexer->consume()){
-
+        for (; (false !== $token); $token = $ListLexer->consume()) {
             $symbol = $token->getSymbol();
             /** @var NodeInterface $node */
             $node = NodeVisitor::visit($symbol);
@@ -49,6 +48,7 @@ class Parser
             $node->load($ListLexer);
             $this->node_list[] = $node;
         }
+
         return $this->node_list;
     }
 
@@ -57,10 +57,12 @@ class Parser
      *
      * @return QueryInterface
      */
-    protected static function getOutputObject( $is_fragmaent = false){
-        if(false === $is_fragmaent){
+    protected static function getOutputObject($is_fragmaent = false)
+    {
+        if (false === $is_fragmaent) {
             return Query::of();
         }
+
         return Fragment::of();
     }
 
@@ -68,8 +70,9 @@ class Parser
      * @param      $string
      * @param bool $is_fragmaent
      *
-     * @return array
      * @throws \ByteFerry\RqlParser\Exceptions\RegexException
+     *
+     * @return array
      */
     public static function parse($string, $is_fragmaent = false)
     {
@@ -83,17 +86,17 @@ class Parser
 
         /** @var NodeInterface[] $node_list */
         $node_list = $instance->load($tokens);
-        $ir_list = [] ;
+        $ir_list = [];
 
         /** @var NodeInterface $node */
-        foreach($node_list as $node){
+        foreach ($node_list as $node) {
             $ir_list[] = $node->build();
         }
 
         $queries = [];
         foreach ($ir_list as $ir) {
-             $query = self::getOutputObject($is_fragmaent);
-             $queries[] = $query->from($ir);
+            $query = self::getOutputObject($is_fragmaent);
+            $queries[] = $query->from($ir);
         }
 //        dd(json_encode($queries[0]->toArray()));
         return $queries;
